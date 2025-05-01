@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 " />
+    <title>Weather App</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #1a1a2e, #16213e);
+        color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      .container {
+        background: rgba(0, 0, 30, 0.5);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        width: 100%;
+        max-width: 500px;
+        margin-top: 2rem;
+        transform: translateY(20px);
+        opacity: 0;
+        animation: fadeIn 0.8s forwards;
+      }
+
+      h1 {
+        color: #4cc9f0;
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 2.5rem;
+        text-shadow: 0 0 10px rgba(76, 201, 240, 0.5);
+        animation: glow 1.5s infinite alternate;
+      }
+
+      .search-box {
+        display: flex;
+        margin-bottom: 2rem;
+        gap: 0.5rem;
+      }
+
+      #cityInput {
+        flex: 1;
+        padding: 1rem;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        color: white;
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      #cityInput:focus {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 15px rgba(76, 201, 240, 0.5);
+      }
+
+      button {
+        padding: 1rem 1.5rem;
+        background: #4361ee;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      }
+
+      button:hover {
+        background: #3a56d4;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+
+      #weatherResult {
+        margin-top: 1.5rem;
+      }
+
+      #weatherResult h2 {
+        color: #4cc9f0;
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+        border-bottom: 2px solid rgba(76, 201, 240, 0.3);
+        padding-bottom: 0.5rem;
+      }
+
+      #weatherResult p {
+        margin: 0.8rem 0;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: slideIn 0.5s forwards;
+      }
+
+      #weatherResult p:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+      #weatherResult p:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      #weatherResult p:nth-child(4) {
+        animation-delay: 0.3s;
+      }
+
+      .weather-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+        display: block;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 5px rgba(76, 201, 240, 0.5);
+        }
+        to {
+          text-shadow: 0 0 15px rgba(76, 201, 240, 0.8),
+            0 0 20px rgba(76, 201, 240, 0.5);
+        }
+      }
+
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      /* Responsive design */
+      @media (max-width: 600px) {
+        .container {
+          padding: 1.5rem;
+        }
+
+        h1 {
+          font-size: 2rem;
+        }
+
+        .search-box {
+          flex-direction: column;
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Weather Checker</h1>
+      <div class="search-box">
+        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <button onclick="getWeather()">Get Weather</button>
+      </div>
+      <div id="weatherResult"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
